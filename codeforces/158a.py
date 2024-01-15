@@ -1,39 +1,18 @@
-n, k = map(int, input().split(" "))
-all_scores = list(map(int, input().split(" ")))
-scores = all_scores
-
+n, k = list(map(int, input().split(" ")))
+scores = list(map(int, input().split(" ")))
+ntest, ktest = n, k
+scores_test = scores
+# 5 5 -> Failed test cases
+# 1 1 1 1 1
+# k is the place what should be the benchmark result to qualify for the
+#next round
+# ntest, ktest = [4, 2]
+# scores_test = [0, 0, 0, 0]
 qualified = []
-for i in scores:
-    if i > k:
+# print(f"K position: {scores_test[ktest-1]}")
+for i in scores_test:
+    if i >= scores_test[ktest-1] and i != 0:
         qualified.append(i)
-
-# print(qualified)
-if len(qualified) < 1:
-    # print("All ares donkey")
-    # max_numbers_in_the_scores = max(qualified)
-    # print(list(map(str, scores)).sort())
-    scores.sort()
-    max_error_in_donkeys = scores[-1]
-    scores.pop(len(scores)-1)
-    # print(f"MAX: {max_error_in_donkeys}")
-    if max_error_in_donkeys != 0:
-        qualified.append(max_error_in_donkeys)
-    
-        for i in scores:
-            if i == max_error_in_donkeys:
-                qualified.append(i)
 
 print(len(qualified))
 
-"""
-# FAILED TEST CASE#6
-# Input
-    17 14
-    16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
-# Output
-    2
-# Answer
-    14
-# Checker Log
-    wrong answer 1st numbers differ - expected: '14', found: '2'
-"""
